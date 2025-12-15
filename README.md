@@ -1,52 +1,53 @@
-# **第一步：重建 Hexo + 安装 Cactus**
+# **步骤 1：本地新建 Hexo 项目**
 
-假设你已经在新电脑执行了：
+在你的新电脑执行：
 
 ```
-hexo init my-blog
-cd my-blog
+hexo init my-blog 
+cd my-blog 
 npm install
-
 ```
 
-### **1️⃣ 安装 Cactus 主题**
-
-```
-cd themes
-git clone https://github.com/probberechts/hexo-theme-cactus.git cactus
-ll
-
-```
-
-然后在 `_config.yml` 中设置：
-
-`theme: cactus`
-
-保存后，你可以先预览：
-
-`hexo s`
-
-访问 http://localhost:4000 ，看看主题是否正常。
+现在你就有一个干净的 Hexo 博客。
 
 ---
 
-### **2️⃣ 初始化 Git 并推送 Hexo 源码**
+# **步骤 2：创建 GitHub 仓库（保存 Hexo 源码）**
+
+去 GitHub 新建一个仓库：
+
+👉 名称示例：
 
 ```
-cd my-blog
-git init
-git add .
-git commit -m "init hexo source with cactus theme"
-git branch -M main
-git remote add origin https://github.com/你的用户名/hexo-source.git
+hexo-source 
+hexo-blog 
+hexo-main
+```
+
+❗ 注意：不要勾选 README（保持仓库为空）
+
+---
+
+# **步骤 3：在本地初始化 Git & 推送源码**
+
+在 my-blog 项目目录：
+
+```
+git init 
+git add . 
+git commit -m "init hexo source" 
+git branch -M main git remote add origin https://github.com/你的用户名/hexo-source.git 
 git push -u origin main
-
-
 ```
 
-### **3️⃣ 配置部署到 GitHub Pages**
+这样你的 Hexo 源码就永远安全地放在 GitHub 了。
 
-在 `_config.yml`：
+---
+
+# **步骤 4：设置部署到 username.github.io**
+
+现在编辑项目根目录下的 `_config.yml`  
+找到 `deploy:` 部分，改成：
 
 ```
 deploy:
@@ -56,14 +57,59 @@ deploy:
 
 ```
 
-`npm install hexo-deployer-git --save`
+---
 
-部署：
+# **步骤 5：安装部署插件**
+
+```
+`npm install hexo-deployer-git --save`
+```
+
+---
+
+# **步骤 6：首次部署（生成 public 并推送到 pages 仓库）**
 
 ```
 hexo clean
 hexo g
 hexo d
 
+```
+
+你将看到：
+
+- public 内容推送到了 pages 仓库（username.github.io）
+
+- 你的线上博客可以访问了 🎉
+
+---
+
+# 
+
+以后写博客：
 
 ```
+hexo new post "文章标题"
+hexo g
+hexo d
+
+```
+
+同步源码：
+
+```
+git add .
+git commit -m "update"
+git push
+
+```
+
+换电脑时：
+
+```
+git clone https://github.com/你的用户名/hexo-source.git
+npm install
+
+```
+
+继续写。
