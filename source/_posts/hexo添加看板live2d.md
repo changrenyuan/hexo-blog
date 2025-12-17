@@ -1,5 +1,6 @@
 ---
 title: hexo添加看板live2d
+lang: zh
 date: 2025-12-12 16:51:03
 tags: 
     - skills
